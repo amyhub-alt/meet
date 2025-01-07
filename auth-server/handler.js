@@ -79,3 +79,71 @@ module.exports.getAccessToken = async (event) => {
         };
       });
    };
+
+   module.exports.getCalendarEvents = async (event) => {
+    return new Promise((resolve, reject) => {
+      try {
+        // Extract the access token from the path parameters
+        const accessToken = decodeURIComponent(event.pathParameters.access_token);
+  
+        if (!accessToken) {
+          return reject({
+            statusCode: 400,
+            body: JSON.stringify({ error: "Access token is required" }),
+          });
+        }
+  
+        // Set the access token as credentials in oAuth2Client
+        oAuth2Client.setCredentials({ access_token: accessToken });
+  
+        // Fetch calendar events
+        calendar.events.list(
+          {
+            calendarId: process.env.CALENDAR_ID, // Use the calendar ID from environment variables
+            auth: oAuth2Client,
+            timeMin: new Date().toISOString(), // Start time for events (current date/time)
+            singleEvents: true, // Expand recurring events into individual instances
+            orderBy: "startTime", // Order events by start time
+          },
+          (error, response) => {
+            if (error) {
+              // Reject the promise with the error
+              return reject({
+                statusCode: 500,
+                body: JSON.stringify({ error: "Failed to fetch calendar events", details: error }),
+              });
+            }
+  
+            // Resolve the promise with the list of events
+            return resolve(response.data.items); // Return only the events
+          }
+        );
+      } catch (error) {
+        return reject({
+          statusCode: 500,
+          body: JSON.stringify({ error: error.message || "An unexpected error occurred" }),
+        });
+      }
+    })
+      .then((results) => {
+        // Successfully fetched events
+        return {
+          statusCode: 200,
+          headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Credentials': true,
+          },
+          body: JSON.stringify({ events: results }), // Return the events in a formatted structure
+        };
+      })
+      .catch((error) => {
+        return {
+          statusCode: error.statusCode || 500,
+          headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Credentials': true,
+          },
+          body: JSON.stringify(error.body || { error: "Unknown error occurred" }),
+        };
+      });
+  };
