@@ -80,7 +80,7 @@ module.exports.getAccessToken = async (event) => {
       });
    };
 
-   module.exports.getCalendarEvents = async (event) => {
+module.exports.getCalendarEvents = async (event) => {
     return new Promise((resolve, reject) => {
       try {
         // Extract the access token from the path parameters
