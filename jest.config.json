@@ -6,5 +6,6 @@
   "moduleNameMapper": {
     "\\.(css|less|scss|sass)$": "identity-obj-proxy"
   },
-  "moduleFileExtensions": ["js", "jsx"]
+  "moduleFileExtensions": ["js", "jsx"],
+  "setupFilesAfterEnv": ["<rootDir>/src/setupTests.js"]
 }
