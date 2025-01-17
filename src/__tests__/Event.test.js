@@ -33,7 +33,7 @@ describe('<Event /> component', () => {
   });
 
 
-  test('renders event details button with the title (show details)', async() => {
+  test('renders button with (hide details)', async() => {
     const user = userEvent.setup();
     const button = EventComponent.queryByText('show details');
     await user.click(button);
