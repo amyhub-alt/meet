@@ -10,9 +10,22 @@ describe('<Event /> component', () => {
    EventComponent = render(<Event event={mockData[0]} />);
  })
 
- test('has an summary', () => {
+ test('has  summary', () => {
    expect(EventComponent.queryByText( mockData[0].summary)).toBeInTheDocument();
  });
+
+  test('has  location', () => {
+    expect(EventComponent.queryByText( mockData[0].location)).toBeInTheDocument();
+  });
+
+  test('has start time', () => {
+    expect(EventComponent.queryByText( mockData[0].start.dateTime)).toBeInTheDocument();
+  });
+ 
+
+  test('has end time', () => {
+    expect(EventComponent.queryByText( mockData[0].end.dateTime)).toBeInTheDocument();
+  });
 
 
 });
