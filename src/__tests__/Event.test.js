@@ -2,6 +2,7 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import Event from '../components/Event';
 import mockData from '../mock-data';
+import userEvent from '@testing-library/user-event';
 
 describe('<Event /> component', () => {
  let EventComponent;
@@ -30,6 +31,17 @@ describe('<Event /> component', () => {
   test('renders event details button with the title (show details)', () => {
     expect(EventComponent.queryByText('show details')).toBeInTheDocument();
   });
+
+
+  test('renders event details button with the title (show details)', async() => {
+    const user = userEvent.setup();
+    const button = EventComponent.queryByText('show details');
+    await user.click(button);
+    
+    expect(EventComponent.queryByText('hide details')).toBeInTheDocument();
+  });
+
+
 
 
 });

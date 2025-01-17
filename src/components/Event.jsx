@@ -10,10 +10,13 @@ const Event = ({event}) => {
     <p>{event.location}</p>
     <p>{event.start.dateTime}</p>
     <p>{event.end.dateTime}</p>
-    <button onClick={()=>setShow(true)}>{show == false ? "show details" : "hide details"}</button>
-    {
-      show ? <p className='details'>{event.description}</p> : <></>
-    }
+    <button onClick={()=>{
+      console.log(show)
+      setShow(true)}
+      }>
+      {show ? "hide details" : "show details"}
+      </button>
+    <p className='details'>{ show ? event.description : null}</p> 
  </li>
   );
 }
