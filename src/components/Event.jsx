@@ -1,9 +1,12 @@
 import React from 'react';
 
 
-const Event = () => {
+const Event = ({event}) => {
   return (
-    <li></li>
+    <li className='event'>
+    <p>{event.summary}
+    </p>
+    </li>
   );
 }
 
