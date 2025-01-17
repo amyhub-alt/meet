@@ -18,7 +18,7 @@ This project is a web application that helps users find and explore events in va
 - **So that**, I can see the list of events that take place in that city.
 
 ### Feature 2: Show/Hide Event Details (Event)
-- **As a user**, I should be able to show or hide event details
+- **As a user**, I should be able to click to show or hide event details
 - **So that**, I can see more or less information about an event.
 
 ### Feature 3: Specify Number of Events (NumberOfEvent)
