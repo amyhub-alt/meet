@@ -27,5 +27,9 @@ describe('<Event /> component', () => {
     expect(EventComponent.queryByText( mockData[0].end.dateTime)).toBeInTheDocument();
   });
 
+  test('renders event details button with the title (show details)', () => {
+    expect(EventComponent.queryByText('show details')).toBeInTheDocument();
+  });
+
 
 });
