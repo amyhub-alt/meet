@@ -21,5 +21,7 @@ export const extractLocations = (events) => {
  * This function will fetch the list of all events
  */
 export const getEvents = async () => {
+  // Check if offline to retrn moc data
+  // else you return events from AWS APIs
   return mockData;
 };
