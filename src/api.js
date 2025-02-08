@@ -67,22 +67,35 @@ export const getAccessToken = async () => {
   const accessToken = localStorage.getItem('access_token');
   const tokenCheck = accessToken && (await checkToken(accessToken));
 
-  if (!accessToken || tokenCheck.error) {
-    await localStorage.removeItem("access_token");
+  if (!accessToken || tokenCheck?.error) {
+    await localStorage.removeItem("access_token"); // Kept await for consistency
+
     const searchParams = new URLSearchParams(window.location.search);
     const code = await searchParams.get("code");
-    if (!code) {
-      const response = await fetch(
-        "https://mapo0hrnl2.execute-api.us-east-2.amazonaws.com/dev/api/get-auth-url"
-      );
-      const result = await response.json();
-      const { authURL } = result;
-      return (window.location.href = authURL);
-    }
-    return code && getToken(code);
-  }
-  return accessToken
 
+    if (!code) {
+      try {
+        const response = await fetch(
+          "https://mapo0hrnl2.execute-api.us-east-2.amazonaws.com/dev/api/get-auth-url"
+        );
+        const result = await response.json();
+        const { authURL } = result;
+
+        if (!authURL) {
+          console.error("Auth URL is missing!!");
+          return;
+        }
+
+        await (window.location.href = authURL);
+      } catch (error) {
+        console.error("Error fetching auth URL:", error);
+      }
+    } else {
+      return await getToken(code);
+    }
+  }
+
+  return accessToken;
 };
 
 
