@@ -100,14 +100,23 @@ export const getAccessToken = async () => {
 
 
 const getToken = async (code) => {
-  const encodeCode = encodeURIComponent(code);
-  
-  const response = await fetch(
-    'https://mapo0hrnl2.execute-api.us-east-2.amazonaws.com/dev/api/token' + '/' + encodeCode
-  );
-  const { access_token } = await response.json();
-  access_token && localStorage.setItem("access_token", access_token);
-  
+  try {
+    const encodedCode = encodeURIComponent(code);
+    const url = `https://mapo0hrnl2.execute-api.us-east-2.amazonaws.com/dev/api/token/${encodedCode}`;
+    
+    console.log("Fetching token from:", url); 
 
-  return access_token;
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const { access_token } = await response.json();
+    if (access_token) {
+      localStorage.setItem("access_token", access_token);
+    }
+    return access_token;
+  } catch (error) {
+    console.error("Error fetching token:", error);
+  }
 };
