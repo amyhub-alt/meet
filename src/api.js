@@ -40,6 +40,7 @@ export const getEvents = async () => {
     removeQuery();
     const url = "https://mapo0hrnl2.execute-api.us-east-2.amazonaws.com/dev/api/get-events" + "/" + token;
     const response = await fetch(url);
+    const result = await response.json();
     if (result) {
       return result.events;
     } else return null;
