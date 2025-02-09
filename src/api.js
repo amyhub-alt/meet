@@ -73,6 +73,9 @@ export const getAccessToken = async () => {
     const searchParams = new URLSearchParams(window.location.search);
     const code = await searchParams.get("code");
 
+    console.log("Authorization Code:", code);
+
+
     if (!code) {
       try {
         const response = await fetch(
