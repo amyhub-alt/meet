@@ -1,12 +1,12 @@
 import React, {useState} from "react";
 
 
-const NumberOfEvents = () => {
+const NumberOfEvents = ({ currentNOE, setCurrentNOE }) => {
 
-    const [eventCount, setEventCount] = useState(32);
+    // const [eventCount, setEventCount] = useState(32);
 
     const handleInputChange = (event) => {
-        setEventCount(event.target.value);
+        setCurrentNOE(event.target.value);
     };
 
     return(
@@ -16,7 +16,7 @@ const NumberOfEvents = () => {
                 type="number" 
                 role="textbox" 
                 id="event-count" 
-                value={eventCount}
+                value={currentNOE}
                 onChange={handleInputChange} 
             />
         </div>

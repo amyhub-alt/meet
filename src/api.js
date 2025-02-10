@@ -82,14 +82,16 @@ export const getAccessToken = async () => {
           "https://mapo0hrnl2.execute-api.us-east-2.amazonaws.com/dev/api/get-auth-url"
         );
         const result = await response.json();
-        const { authURL } = result;
+        console.log(result)
+        const { authUrl } = result;
+        console.log(authUrl)
 
-        if (!authURL) {
+        if (!authUrl) {
           console.error("Auth URL is missing!!");
           return;
         }
 
-        await (window.location.href = authURL);
+        return (window.location.href = authUrl);
       } catch (error) {
         console.error("Error fetching auth URL:", error);
       }
