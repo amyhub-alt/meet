@@ -6,8 +6,7 @@ import userEvent from '@testing-library/user-event';
 
 describe('<Event /> component', () => {
  let EventComponent;
- let allEvents;
- beforeEach(async () => {
+ beforeEach(() => {
    EventComponent = render(<Event event={mockData[0]} />);
  })
 
@@ -28,17 +27,17 @@ describe('<Event /> component', () => {
     expect(EventComponent.queryByText( mockData[0].end.dateTime)).toBeInTheDocument();
   });
 
-  test('renders event details button with the title (show details)', () => {
-    expect(EventComponent.queryByText('show details')).toBeInTheDocument();
+  test('renders event details button with the title (Show Details)', () => {
+    expect(EventComponent.queryByText('Show Details')).toBeInTheDocument();
   });
 
 
-  test('renders button with (hide details)', async() => {
+  test('renders button with (Hide Details)', async() => {
     const user = userEvent.setup();
-    const button = EventComponent.queryByText('show details');
+    const button = EventComponent.getByText('Show Details');
     await user.click(button);
     
-    expect(EventComponent.queryByText('hide details')).toBeInTheDocument();
+    expect(await EventComponent.findByText('Hide Details')).toBeInTheDocument();
   });
 
 
