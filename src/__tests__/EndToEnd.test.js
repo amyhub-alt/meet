@@ -1,34 +1,38 @@
 import puppeteer from "puppeteer";
 
 describe('show/hide an event details', ()=>{
+    let browser;
+    let page;
+    beforeAll(async () => {
+        browser = await puppeteer.launch();
+        page = await browser.newPage();
+        await page.goto('http://localhost:5173/');
+        await page.waitForSelector('.event');
+    });
+    
+    afterAll(() => {
+        browser.close();
+    });
+
+
     test('An event element is collapsed by default', async () => {
         jest.setTimeout(60000);
    
-        const browser = await puppeteer.launch();
-
-        const page = await browser.newPage();
-        await page.goto('http://localhost:5173/'); // If your Vercel app is running in a different port please update it here
-
-        // If your event element has a different selector, use it instead of .event
-        await page.waitForSelector('.event');
-
-        // If your event's details have a different selector, use it instead of .event .details
         const eventDetails = await page.$('#event');
         expect(eventDetails).toBeNull();
-        await browser.close();
     });
 
     test('User can expand an event to see its details', async () => {
-        const browser = await puppeteer.launch();
-        const page = await browser.newPage();
-        await page.goto('http://localhost:5173/');
-    
-        await page.waitForSelector('.event');
-        await page.click('.details');
-    
-        const eventDetails = await page.$('.details');
+        await page.click('.event .details');
+        const eventDetails = await page.$('.event .details');
         expect(eventDetails).toBeDefined();
-        await browser.close();
       });
+    
+    test('User can collapse an event to hide details', async () => {
+        await page.click('.event .details');
+        const eventDetails = await page.$('.event .details');
+        expect(eventDetails).toBeNull();
+    });
+
 });
 
