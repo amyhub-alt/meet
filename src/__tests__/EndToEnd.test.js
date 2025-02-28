@@ -3,6 +3,7 @@ import puppeteer from "puppeteer";
 describe('show/hide an event details', ()=>{
     let browser;
     let page;
+
     beforeAll(async () => {
         jest.setTimeout(60000);
         browser = await puppeteer.launch();
@@ -11,7 +12,7 @@ describe('show/hide an event details', ()=>{
         await page.waitForSelector('.event');
     });
     
-    afterAll(() => {
+    afterAll( () => {
         if (browser) {
             browser.close();
         }
@@ -31,7 +32,7 @@ describe('show/hide an event details', ()=>{
       });
     
     test('User can collapse an event to hide details', async () => {
-        await page.click('.event .details');
+        await page.click('.event .details'); //expand
         const eventDescription = await page.$('.event-description');
         expect(eventDescription).toBeNull();
     });
