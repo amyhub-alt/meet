@@ -11,13 +11,13 @@ import userEvent from '@testing-library/user-event';
 // });
 
 test('check that NumberOfEvent exist', async () =>{
-    render(<NumberOfEvents setCurrentNOE={()=>{}} />);
+    render(<NumberOfEvents setCurrentNOE={()=>{}} setErrorAlert={()=>{}} />);
     const textbox = screen.getByRole('textbox');
-    expect(textbox.value).toBe("");
+    expect(textbox.value).toBe('32');
 });
 
 test('updates the value of the textbox when user types in it', async () =>{
-    render(<NumberOfEvents setCurrentNOE={()=>{}} />);
+    render(<NumberOfEvents setCurrentNOE={()=>{}} setErrorAlert={()=>{}} />);
     const textbox = screen.getByRole('textbox');
     await userEvent.type(textbox, '{backspace}{backspace}10');
     expect (textbox.value).toBe('10');
