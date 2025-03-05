@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import * as atatus from 'atatus-spa';
 import './index.css'
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 
 atatus.config('2be7e6c639034ad1a65beef79c4ce15c').install();
 
