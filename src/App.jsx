@@ -20,10 +20,12 @@ const App = () => {
 
 
   useEffect(() => {
-    if (navigator.onLine) {
-      setWarningAlert("")
-    } else {
+    if (!navigator.onLine) {
+      console.log(warningAlert);
       setWarningAlert("No network connection found. This app now uses data from previous sessions.")
+    }
+    else {
+      setWarningAlert("") 
     }
     fetchData();
   }, [currentCity, currentNOE, warningAlert]);
@@ -41,6 +43,7 @@ const App = () => {
       setErrorAlert("There was an error fetching the events. Please try again later.");
     }
   };
+
 
 
 
