@@ -20,15 +20,13 @@ const App = () => {
 
 
   useEffect(() => {
-    if (!navigator.onLine) {
-      console.log(warningAlert);
+    if (navigator.onLine) {
+      setWarningAlert("")
+    } else {
       setWarningAlert("No network connection found. This app now uses data from previous sessions.")
     }
-    else {
-      setWarningAlert("") 
-    }
     fetchData();
-  }, [currentCity, currentNOE, warningAlert]);
+  }, [currentCity, currentNOE]);
 
 
   const fetchData = async () => {
@@ -44,7 +42,7 @@ const App = () => {
     }
   };
 
-
+  console.log(warningAlert);
 
 
   return (
