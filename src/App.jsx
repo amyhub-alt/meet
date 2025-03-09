@@ -26,7 +26,7 @@ const App = () => {
       setWarningAlert("No network connection found. This app now uses data from previous sessions.")
     }
     fetchData();
-  }, [currentCity, currentNOE]);
+  }, [currentCity, currentNOE, warningAlert]);
 
 
   const fetchData = async () => {
