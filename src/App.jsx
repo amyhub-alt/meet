@@ -3,7 +3,7 @@ import EventList from './components/EventList';
 import CitySearch from './components/CitySearch'
 import NumberOfEvents from './components/NumberOfEvents'
 import { extractLocations, getEvents } from './api';
-import { InfoAlert, ErrorAlert } from './components/Alert';
+import { InfoAlert, ErrorAlert, WarningAlert } from './components/Alert';
 
 
 import './App.css';
@@ -16,8 +16,15 @@ const App = () => {
   const [currentCity, setCurrentCity] = useState("See all cities");
   const [infoAlert, setInfoAlert] = useState("");
   const [errorAlert, setErrorAlert] = useState("");
+  const [warningAlert, setWarningAlert] = useState("");
+
 
   useEffect(() => {
+    if (navigator.onLine) {
+      setWarningAlert("")
+    } else {
+      setWarningAlert("No network connection found. This app now uses data from previous sessions.")
+    }
     fetchData();
   }, [currentCity, currentNOE]);
 
@@ -42,6 +49,7 @@ const App = () => {
       <div className="alerts-container">
         { infoAlert && infoAlert.length ? <InfoAlert text={infoAlert} /> : null}
         {errorAlert && errorAlert.length ? <ErrorAlert text={errorAlert} /> : null}
+        {warningAlert && warningAlert.length ? <WarningAlert text={warningAlert} /> : null}
         </div>
         <CitySearch 
           allLocations={allLocations} 
