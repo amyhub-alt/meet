@@ -51,8 +51,8 @@ const App = () => {
       <h1>Meet App</h1>
       <div className="alerts-container">
         { infoAlert && infoAlert.length ? <InfoAlert text={infoAlert} /> : null}
-        {errorAlert && errorAlert.length ? <ErrorAlert text={errorAlert} /> : null}
-        {warningAlert && warningAlert.length ? <WarningAlert text={warningAlert} /> : null}
+        { errorAlert && errorAlert.length ? <ErrorAlert text={errorAlert} /> : null}
+        { warningAlert && warningAlert.length ? <WarningAlert text={warningAlert} /> : null}
         </div>
         <CitySearch 
           allLocations={allLocations} 
