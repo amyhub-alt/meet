@@ -12,8 +12,8 @@ const CityEventsChart = ({ allLocations, events }) => {
     const [data, setData] = useState([]);
 
     useEffect(()=> {
-      console.log("All locations BEFORE getData():", allLocations);  // Logs all cities before processing
-      console.log("Events BEFORE getData():", events);  // Logs all events received from API
+      // console.log("All locations BEFORE getData():", allLocations);  // Logs all cities before processing
+      // console.log("Events BEFORE getData():", events);  // Logs all events received from API
         setData(getData());
     }, [events]);
 
@@ -22,7 +22,7 @@ const CityEventsChart = ({ allLocations, events }) => {
         const data = allLocations.map((location) => {
         const count = events.filter((event) => event.location === location).length
           const city = location.split((/, | - /))[0]
-            console.log(`Processing location: ${location}, Event Count: ${count}`);  //  Logs each city after filtering
+            // console.log(`Processing location: ${location}, Event Count: ${count}`);  //  Logs each city after filtering
             return { count, city };
         })
         return data;
