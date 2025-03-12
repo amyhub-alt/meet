@@ -44,7 +44,7 @@ const App = () => {
     }
   };
 
-  console.log(warningAlert);
+  // console.log(warningAlert);
 
 
   return (
