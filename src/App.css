@@ -111,8 +111,12 @@ input[type="number"] {
   gap:20 px
 }
 
-@media (max-width: 768px){
-  .charts-container{
-    grid-template-columns: 1fr;
-  }
+@media (min-width: 1051px) {  
+  
 }
+
+@media (max-width: 1050px) {  
+    .charts-container {
+      grid-template-columns: 1fr;  
+    }
+  }
