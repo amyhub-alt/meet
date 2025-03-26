@@ -3,6 +3,30 @@
 
 This project is a web application that helps users find and explore events in various cities. The app provides features such as filtering events by city, viewing event details, and accessing the app offline. Users can also add the app as a shortcut to their home screen for quick access and visualize event details through interactive charts.
 
+##  Overview
+
+Meet is a progressive web app (PWA) built with **React** and **Vite** that allows users to discover upcoming events in various cities. The app fetches event data using the Google Calendar API and visualizes the data using charts. It works both online and offline, providing a native-like user experience across devices.
+
+##  Technologies Used
+
+- React + Vite
+- Google Calendar API
+- Recharts (or Chart.js, depending on what you used)
+- Jest + Cucumber (for testing)
+- Service Workers + Workbox (for offline support/PWA functionality)
+
+##  Testing
+
+- Unit and integration tests written using **Jest**
+- End-to-end feature testing using **Cucumber** and **Gherkin syntax**
+
+##  PWA Features
+
+- Offline functionality with cached events
+- "Add to Home Screen" prompt
+- Responsive design for mobile & desktop
+- Fast performance thanks to Vite + lazy loading
+
 ## Key Features
 1. Filter Events by City
 2. Show/Hide Event Details
@@ -83,3 +107,21 @@ Then the app should be added as a shortcut on my home screen
 Given I have selected a city
 When I view the chart section of the app
 Then I should see a chart displaying the upcoming events in the selected city
+```
+##  Getting Started
+
+1. Clone the repository:
+git clone https://github.com/amyhub-alt/myFlix-client.git cd meet-app
+ 
+2. Install dependencies:
+npm install
+
+3. Start the App:
+npm run dev
+
+4. Visit `http://localhost:5173` in your browser.
+ 
+ ## 📇 Contact
+
+Created by [Amy Tiefermann] 
+```
